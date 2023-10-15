@@ -1,4 +1,4 @@
-
+# Simple ansible recipe for copying ip from a remote host to local
 - name:
   hosts: all
   become: false
