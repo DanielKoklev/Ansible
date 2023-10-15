@@ -1,0 +1,18 @@
+# Ansible recipe for backup files. Rsync via ansible synchronize.
+- name: Backup via rsync
+  hosts: all
+  become: true
+  vars:
+    source: '/tmp/log.txt'
+    destination: '~/Ansible/log.txt'
+  tasks:
+    - name: ensure rsync is installed
+      ansible.builtin.package:
+        name: rsync
+        state: present
+      become: true
+
+    - name: data synchronization
+      ansible.posix.synchronize:
+        src: '{{ source }}'
+        dest: ' {{ destination }}'
