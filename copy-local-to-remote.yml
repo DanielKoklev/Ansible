@@ -1,0 +1,9 @@
+# Ansible recipe for copying local files to remotes
+- name: copying to remote
+  hosts: all
+  tasks:
+    - name: copying
+      ansible.builtin.fetch:
+        src: /tmp/copy-to-remote.txt
+        dest: ~/copy-to-remote.txt
+        

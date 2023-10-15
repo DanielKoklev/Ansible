@@ -1,0 +1,10 @@
+# Ansible recipe for restarting services
+- name: restart services
+  hosts: all
+  become: true
+  tasks:
+    - name: jenkins service
+      ansible.builtin.service:
+        name: jenkins
+        state: restarted
+        enabled: true

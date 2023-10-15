@@ -1,0 +1,18 @@
+# Ansible recipe for enabling services on remote
+- name: service
+  hosts: all
+  become: true
+  vars:
+    services_on_boot:
+      - "chronyd.service"
+    tasks:
+      - name: populate service
+        ansible.builtin.service_facts:
+        
+      - name: enable services
+        ansible.builtin.service:
+          name: " {{ service }}"
+          enabled: true
+          state: started
+        when: "service in services"
+        with_items: '{{ services_on_boot }}'

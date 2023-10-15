@@ -1,0 +1,14 @@
+# Ansible recipe for scheduling cron job
+- name: Schedule cron job
+  hosts: all
+  tasks:
+    - name: Cron
+      ansible.builtin.cron:
+        name: "test"
+        state: present
+        minute: "*/2" # every two minutes
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        job: 'df -h >> ~/disk_space.txt'

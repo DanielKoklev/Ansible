@@ -1,0 +1,15 @@
+# Ansible recipe for updating and upgrading apt packages
+- name: Debian based system
+  hosts: all
+  vars_prompt:
+    - name: "ansible_become_pass"
+      prompt: "Sudo Password"
+      private: yes
+  become: true
+  become_user: root
+  tasks:
+    - name: Apt update and upgrade
+      ansible.builtin.apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 43200 # half a day
