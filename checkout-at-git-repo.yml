@@ -1,0 +1,20 @@
+
+- name: git
+  hosts: all
+  become: true
+  tasks:
+    - name: ensure git is present
+      ansible.builtin.apt:
+        name: git
+        state: present
+    - name: checkout at repo https
+      ansible.builtin.git:
+        repo: https://github.com/inviqa/SysAdmin.git
+        dest: /tmp/test-git-https/
+    - name: checkout at repo ssh
+      ansible.builtin.git:
+        repo: https://github.com/inviqa/SysAdmin.git
+        dest: /tmp/test-git-ssh/
+        key_file: "~/.ssh/id_ed25519.pub" # pub key in here
+
+        

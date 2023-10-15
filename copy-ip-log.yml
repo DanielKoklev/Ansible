@@ -1,0 +1,17 @@
+
+- name:
+  hosts: all
+  become: false
+  vars:
+    user: hydra # username of localhost
+  tasks:
+    - name: get log for ip
+      shell: "ip a | grep enp2s0 | grep inet | awk '{print $2}' >> ~/ip-log.txt"
+      register: result
+
+    - name: copy some file
+      ansible.builtin.copy:
+        src: ~/ip-log.txt
+        dest: ~/work/Ansible/ip-log.txt
+        owner: "{{ user }}"
+        mode: '0644'
