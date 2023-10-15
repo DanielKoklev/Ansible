@@ -1,4 +1,4 @@
-
+# Ansible recipe for rebooting remotes
 - name: reboot
   hosts: all
   become: true

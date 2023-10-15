@@ -1,4 +1,5 @@
 
+# Ansible recipe for checking out on git repo via different protocols
 - name: git
   hosts: all
   become: true
